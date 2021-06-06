@@ -100,11 +100,11 @@
                 <div class="panel__left-body">
                     <form method="POST" name="form-login" id="form-login">
                         <div class="form-group">
-                            <label for="email" style=" color:  rgb(69, 57, 97); !important; font-size:15px !important;"> <b> Correo </b></label>
-                            <input type="text" name="email" id="email" class="form-control input-border-bottom" placeholder="correo@dominio.com" />
+                            <label for="user" style=" color:  rgb(69, 57, 97); !important; font-size:15px !important;"> <b> Usuario de Acceso </b></label>
+                            <input type="text" name="user" id="user" class="form-control input-border-bottom" placeholder="usuario" />
                         </div>
                         <div class="form-group">
-                            <label for="password" style=" color:  rgb(69, 57, 97); !important; font-size:15px !important;"> <b> Clave </b></label>
+                            <label for="password" style=" color:  rgb(69, 57, 97); !important; font-size:15px !important;"> <b> Clave de Acceso</b></label>
                             <input type="password" name="password" id="password" class="form-control input-border-bottom" placeholder="***********" />
                         </div>
                         <div class="form-group text-center">
@@ -112,10 +112,10 @@
                         </div>
                     </form>
                 </div>
-                <div class="panel__left-footer text-center">
+                {{-- <div class="panel__left-footer text-center">
                     <span class="msg">Olvid&oacute; su clave?</span>
                     <a href="{{ url('reset/password') }}" target="_blank" class="link">Click Aqui</a>
-                </div>
+                </div> --}}
             </div>
             <div class="panel__right col-lg-5 d-none d-lg-block py-5 px-3">
                 <div class="panel__right-title text-center">
@@ -140,12 +140,12 @@
             event.preventDefault();
             //variables
             var base_url    = $.trim($('meta[name="base_url"]').attr('content') + '/');
-            var email       = $("#email").val();
+            var user        = $("#user").val();
             var password    = $("#password").val();
 
             $("#login").prop("disabled", true).text("Enviando...");
             $('#avatar').attr('src', '{{ asset('img/loader.gif') }}');
-            if(email=="" || password==""){
+            if(user=="" || password==""){
                 //Notify
                 $.notify({
                         icon: 'flaticon-error',
@@ -164,7 +164,7 @@
                 setTimeout(function () { $('#avatar').attr('src', '{{ asset('img/avatar.svg') }}'); }, 1000);
             }else{
                 axios.post('{{ route('login')}}', {
-                    email:email,
+                    user:user,
                     password:password
                 }).then(response => {
                     if(response.data.success){
@@ -239,7 +239,7 @@
             }
         });
         function clear() {
-            $("#email").val('');
+            $("#user").val('');
             $("#password").val('');
         }
     </script>

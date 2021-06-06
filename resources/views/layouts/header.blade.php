@@ -176,23 +176,23 @@
                 <li class="nav-item dropdown hidden-caret">
                     <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
                         <div class="avatar-sm">
-                            <img src="{{ asset('img/profile/'.Auth::user()->img) }}" alt="..." class="avatar-img rounded-circle avatar-img-profile">
+                            <img src="{{ asset('img/profile/avatar.svg') }}" alt="..." class="avatar-img rounded-circle avatar-img-profile">
                         </div>
                     </a>
                     <ul class="dropdown-menu dropdown-user animated fadeIn">
                         <li>
                             <div class="user-box">
-                                <div class="avatar-sm"><img src="{{ asset('img/profile/'.Auth::user()->img) }}" alt="image profile" class="avatar-img rounded-circle avatar-img-profile"></div>
+                                <div class="avatar-sm"><img src="{{ asset('img/profile/avatar.svg') }}" alt="image profile" class="avatar-img rounded-circle avatar-img-profile"></div>
                                 <div class="u-text">
-                                    <h4>{{ Auth::user()->name }}</h4>
-                                    <p class="text-muted">{{ Auth::user()->email }}</p>
+                                    <h4>{{ Auth::user()->Nombre_Usuario }}</h4>
+                                    <p class="text-muted">{{ Auth::user()->Usuario }}</p>
                                 </div>
                             </div>
                         </li>
                         <li>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" id="profile-user"><i class="fas fa-user-circle" style="color:#8323a0; font-size:15px;"></i> Mi Perfil</a>
-                            <div class="dropdown-divider"></div>
+                            {{-- <a class="dropdown-item" href="#" id="profile-user"><i class="fas fa-user-circle" style="color:#8323a0; font-size:15px;"></i> Mi Perfil</a> --}}
+                            {{-- <div class="dropdown-divider"></div> --}}
                             <a href="#" class="dropdown-item" id="alert_logout"><i class="fas fa-power-off" style="color:#d26f6f; font-size:15px;"></i> Salir</a>
                         </li>
                     </ul>

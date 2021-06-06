@@ -82,22 +82,11 @@ class LoginController extends Controller
      */
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
-        $user = User::where('email', $request->email)->first();
+
+        $user = User::where('Usuario', $request->user)->where('Pass', $request->password)->first();
         if ($user) {
-            if ($user->status) {
-                if ($user->role=='administer' or $user->role=='super') {
-                    if (Auth::attempt($credentials)) {
-                        return response()->json(['success' => true, 'message' => 'Iniciando la sesión, redireccionando...', 'url' => 'dashboard'], 200);
-                    }else {
-                        return response()->json(['error' => true,  'message' => 'Accceso no autorizado, Error en las credenciales.'], 401);
-                    }
-                }else{
-                    return response()->json(['error' => true,  'message' => 'Accceso no autorizado, verifique sus credenciales.'], 401);
-                }
-            }else {
-                return response()->json(['error' => true,  'message' => 'Accceso no autorizado, Usuario Inactivo.'], 401);
-            }
+            $user = Auth::login($user);
+            return response()->json(['success' => true, 'message' => 'Iniciando la sesión, redireccionando...', 'url' => 'dashboard'], 200);
         }else {
             return response()->json(['error' => true,  'message' => 'Accceso no autorizado, Credenciales no existen.'], 401);
         }

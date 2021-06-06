@@ -33,14 +33,6 @@ class HomeController extends Controller
     public function index()
     {
         event(new UserLogin(\Auth::user()));
-        $assignments          = Assignment::count();
-        $pollsters            = User::where('role', 'pollster')->count();
-        $polls                = Poll::count();
-        $periods_active       = Period::where('status', 1)->count();
-        $periods_inactive     = Period::where('status', 0)->count();
-        $routes               = Route::count();
-        $customers            = Customer::count();
-        $respondents          = DB::table('card_poll')->count();
-        return view('panel.home', ['title' => 'Dashboard', 'pollsters' => $pollsters, 'assignments' => $assignments, 'polls' => $polls, 'periods_active' => $periods_active, 'periods_inactive' => $periods_inactive, 'routes' => $routes, 'customers' => $customers, 'respondents' => $respondents]);
+        return view('panel.home', ['title' => 'Dashboard']);
     }
 }

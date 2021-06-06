@@ -16,8 +16,13 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $table = 'tb_usuarios';
+    public $timestamps = false;
+    protected $primaryKey = 'ID_Usuario';
+
+
     protected $fillable = [
-        'name', 'last_name', 'email', 'role', 'code', 'status', 'password',
+        'Nombre_Usuario', 'Usuario', 'Pass'
     ];
 
     /**
