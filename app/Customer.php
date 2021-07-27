@@ -6,21 +6,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
 {
+    protected $table = 'tb_clientes';
+
+    protected $primaryKey = 'idcliente';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
+
     protected $fillable = [
-        'name', 'last_name', 'email', 'phone', 'mobile', 'city', 'province', 'address', 'gender', 'document', 'number_measurer', 'rate', 'half', 'code', 'observation',
+        'documento', 'nombres', 'apellidos', 'telefono', 'direccion', 'email', 'tipo cliente', 'razon social', 'giro', 'comuna', 'region', 'ciudad'
     ];
 
     protected $hidden = [
         'created_at', 'updated_at',
     ];
-
-    public function Route()
-    {
-        return $this->belongsTo('App\Route');
-    }
 }

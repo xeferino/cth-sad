@@ -26,7 +26,7 @@ Auth::routes();
 Route::get('/dashboard', 'HomeController@index')->name('home');
 Route::resource('/users', 'UserController');
 Route::put('/users/profile/{user}', 'UserController@profile');
-Route::resource('/customers', 'CustomerController');
+Route::resource('/clientes', 'CustomerController');
 Route::get('/polls/all', 'PollController@all');
 Route::get('/polls/customer/pdf/{poll}/{period}/{customer}/{pollster}', 'PollController@pdfPollCustomer')->name('polls.pdf.customer');
 Route::resource('/polls', 'PollController');

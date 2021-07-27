@@ -23,56 +23,41 @@
                                 <img src="{{ asset('img/avatar.svg') }}" style= "margin: 5px 0 25px 0;" width="100px" height="100px" alt="avatar" id="avatar" class="rounded-circle">
                             </center>
                         </div>
-                        <div class="col-sm-6 col-md-6">
+                        <div class="col-sm-4 col-md-4">
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text">Nombre</span>
+                                        <span class="input-group-text">Rut/Run</span>
                                     </div>
-                                    <input type="text" class="form-control" aria-label="name" name="name" id="name">
+                                    <input type="text" class="form-control" aria-label="document" name="document" id="document">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" data-toggle="tooltip" data-placement="top" title="El Rut/Run es requerido."><i class="fas fa-info-circle btn-secondary btn-dark btn-round"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Nombres</span>
+                                    </div>
+                                    <input type="text" class="form-control" aria-label="names" name="names" id="names">
                                     <div class="input-group-append">
                                         <span class="input-group-text" data-toggle="tooltip" data-placement="top" title="El nombre es requerido y debe contener un minimo de 3 caracteres."><i class="fas fa-info-circle btn-secondary btn-dark btn-round"></i></span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-md-6">
+                        <div class="col-sm-4 col-md-4">
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text">Apellido</span>
+                                        <span class="input-group-text">Apellidos</span>
                                     </div>
-                                    <input type="text" class="form-control" aria-label="last_name" name="last_name" id="last_name">
+                                    <input type="text" class="form-control" aria-label="surnames" name="surnames" id="surnames">
                                     <div class="input-group-append">
                                         <span class="input-group-text" data-toggle="tooltip" data-placement="top" title="El apellido es requerido y debe contener un minimo de 3 caracteres."><i class="fas fa-info-circle btn-secondary btn-dark btn-round"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6 col-md-6">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">Documento</span>
-                                    </div>
-                                    <input type="text" class="form-control" aria-label="document" name="document" id="document">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text" data-toggle="tooltip" data-placement="top" title="El documento es requerido."><i class="fas fa-info-circle btn-secondary btn-dark btn-round"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-6">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">Email</span>
-                                    </div>
-                                    <input type="text" class="form-control" aria-label="email" name="email" id="email">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text" data-toggle="tooltip" data-placement="top" title="El email es requerido, debe contener un formato (admin@example.com)."><i class="fas fa-info-circle btn-secondary btn-dark btn-round"></i></span>
                                     </div>
                                 </div>
                             </div>
@@ -87,35 +72,7 @@
                                     </div>
                                     <input type="text" class="form-control" aria-label="address" name="address" id="address">
                                     <div class="input-group-append">
-                                        <span class="input-group-text" data-toggle="tooltip" data-placement="top" title="La direccion no es requerida, debe contener un minimo de 4 caracteres."><i class="fas fa-info-circle btn-secondary btn-dark btn-round"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-6">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">Ciudad</span>
-                                    </div>
-                                    <input type="text" class="form-control" aria-label="city" name="city" id="city">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text" data-toggle="tooltip" data-placement="top" title="La ciudad no es requerida, debe contener un minimo de 4 caracteres."><i class="fas fa-info-circle btn-secondary btn-dark btn-round"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6 col-md-6">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">Provincia</span>
-                                    </div>
-                                    <input type="text" class="form-control" aria-label="province" name="province" id="province">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text" data-toggle="tooltip" data-placement="top" title="La provincia no es requerida, debe contener un minimo de 4 caracteres."><i class="fas fa-info-circle btn-secondary btn-dark btn-round"></i></span>
+                                        <span class="input-group-text" data-toggle="tooltip" data-placement="top" title="La direccion es requerida, debe contener un minimo de 4 caracteres."><i class="fas fa-info-circle btn-secondary btn-dark btn-round"></i></span>
                                     </div>
                                 </div>
                             </div>
@@ -128,7 +85,7 @@
                                     </div>
                                     <input type="text" class="form-control" aria-label="phone" name="phone" id="phone">
                                     <div class="input-group-append">
-                                        <span class="input-group-text" data-toggle="tooltip" data-placement="top" title="El telefono no es requerido, debe contener un minimo de 11 caracteres y solo acepta numeros."><i class="fas fa-info-circle btn-secondary btn-dark btn-round"></i></span>
+                                        <span class="input-group-text" data-toggle="tooltip" data-placement="top" title="El telefono es requerido, debe contener un minimo de 11 caracteres y solo acepta numeros."><i class="fas fa-info-circle btn-secondary btn-dark btn-round"></i></span>
                                     </div>
                                 </div>
                             </div>
@@ -139,107 +96,119 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text">Celular</span>
+                                        <span class="input-group-text">Email</span>
                                     </div>
-                                    <input type="text" class="form-control" aria-label="mobile" name="mobile" id="mobile">
+                                    <input type="text" class="form-control" aria-label="email" name="email" id="email">
                                     <div class="input-group-append">
-                                        <span class="input-group-text" data-toggle="tooltip" data-placement="top" title="El celular no es requerido, debe contener un minimo de 11 caracteres y solo acepta numeros."><i class="fas fa-info-circle btn-secondary btn-dark btn-round"></i></span>
+                                        <span class="input-group-text" data-toggle="tooltip" data-placement="top" title="El email es requerido, debe contener un formato (admin@example.com)."><i class="fas fa-info-circle btn-secondary btn-dark btn-round"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Razon Social</span>
+                                    </div>
+                                    <input type="text" class="form-control" aria-label="social" name="social" id="social">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" data-toggle="tooltip" data-placement="top" title="La rason social es requerida, debe contener un minimo de 4 caracteres."><i class="fas fa-info-circle btn-secondary btn-dark btn-round"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Giro</span>
+                                    </div>
+                                    <input type="text" class="form-control" aria-label="turn" name="turn" id="turn">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" data-toggle="tooltip" data-placement="top" title="El giro es requerido, debe contener un minimo de 4 caracteres."><i class="fas fa-info-circle btn-secondary btn-dark btn-round"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Tipo de Cliente</span>
+                                    </div>
+                                    <select class="form-control" name="type" id="type">
+                                        <option value="">.::Selccione::.</option>
+                                        <option value="EMPRESA">EMPRESA</option>
+                                        <option value="PARTICULAR">PARTICULAR</option>
+                                        <option value="NATURAL">NATURAL</option>
+                                    </select>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" data-toggle="tooltip" data-placement="top" title="El tipo de cliente es requerido"><i class="fas fa-info-circle btn-secondary btn-dark btn-round"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 col-md-4">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Comuna</span>
+                                    </div>
+                                    <select class="form-control" name="commune" id="commune">
+                                        <option value="">.::Selccione::.</option>
+                                        <option value="GRANEROS">GRANEROS</option>
+                                        <option value="RANCAGUA">RANCAGUA</option>
+                                    </select>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" data-toggle="tooltip" data-placement="top" title="la comuna es requerida"><i class="fas fa-info-circle btn-secondary btn-dark btn-round"></i></span>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-sm-6 col-md-6">
+                        <div class="col-sm-4 col-md-4">
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text">N° de Medidor</span>
+                                        <span class="input-group-text">Ciudad</span>
                                     </div>
-                                    <input type="text" class="form-control" aria-label="number_measurer" name="number_measurer" id="number_measurer">
+                                    <select class="form-control" name="city" id="city">
+                                        <option value="">.::Selccione::.</option>
+                                        <option value="GRANEROS">GRANEROS</option>
+                                        <option value="RANCAGUA">RANCAGUA</option>
+                                    </select>
                                     <div class="input-group-append">
-                                        <span class="input-group-text" data-toggle="tooltip" data-placement="top" title="El numero de medidor no es requerido, debe contener un minimo de 4 caracteres y debe ser numerico."><i class="fas fa-info-circle btn-secondary btn-dark btn-round"></i></span>
+                                        <span class="input-group-text" data-toggle="tooltip" data-placement="top" title="La ciudad es requerida"><i class="fas fa-info-circle btn-secondary btn-dark btn-round"></i></span>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
+                        <div class="col-sm-4 col-md-4">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Region</span>
+                                    </div>
+                                    <select class="form-control" name="region" id="region">
+                                        <option value="">.::Selccione::.</option>
+                                        <option value="O'HIGGINS">O'HIGGINS</option>
+                                    </select>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" data-toggle="tooltip" data-placement="top" title="La region es requerida"><i class="fas fa-info-circle btn-secondary btn-dark btn-round"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="row">
                         <div class="col-sm-6 col-md-6">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">Tarifa</span>
-                                    </div>
-                                    <input type="text" class="form-control" aria-label="rate" name="rate" id="rate">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text" data-toggle="tooltip" data-placement="top" title="La tarifa no es requerida, debe contener un minimo de 11 caracteres."><i class="fas fa-info-circle btn-secondary btn-dark btn-round"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6 col-md-6">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">Promedio de Consumo</span>
-                                    </div>
-                                    <input type="text" class="form-control" aria-label="half" name="half" id="half">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text" data-toggle="tooltip" data-placement="top" title="El promedio de consumo no es requerido, debe contener un minimo de 4 caracteres."><i class="fas fa-info-circle btn-secondary btn-dark btn-round"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6 col-md-6">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">Codigo</span>
-                                    </div>
-                                    <input type="text" class="form-control" aria-label="code" name="code" id="code">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text" data-toggle="tooltip" data-placement="top" title="El codigo no es requerido, debe contener un minimo de 4 caracteres."><i class="fas fa-info-circle btn-secondary btn-dark btn-round"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6 col-md-6">
-                            <div class="form-group form-floating-label">
-                                <label><b>Rutas <i class="fas fa-info-circle" data-toggle="tooltip" data-placement="top" title="La ruta es requerida"></i></b></label><br/>
-                                <select class="form-control" {{-- class="select2" style="width:100%" --}} id="route" name="route"></select>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-6">
-                            <div class="form-check">
-                                <label><b>Sexo del Cliente <i class="fas fa-info-circle" data-toggle="tooltip" data-placement="top" title="El sexo es requerido"></i></b></label><br/>
-                                <label class="form-radio-label">
-                                    <input class="form-radio-input" type="radio" name="gender" id="gender" value="M" checked>
-                                    <span class="form-radio-sign">Masculino</span>
-                                    <input class="form-radio-input" type="radio" name="gender" id="gender" value="F">
-                                    <span class="form-radio-sign">Femeninno</span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-12">
-                            <div class="form-group form-floating-label">
-                                <label><b>Observaciones <i class="fas fa-info-circle" data-toggle="tooltip" data-placement="top" title="La observacion no es requerida, debe contener un minimo de 10 caracteres."></i></b></label><br/>
-                                <textarea class="form-control" style="width: 100%" aria-label="Observacion" name="observation" id="observation" rows="3"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6 col-md-6">
-                            <div class="form-group form-floating-label">
-                                <label for="exampleFormControlFile1"><b>Avatar <i class="fas fa-info-circle" data-toggle="tooltip" data-placement="top" title="El formato de imagen debe ser (jpeg, png o svg). El peso maximo de la imagen es de 1014 KB"></i></b></label>
-                                <input type="file" name="img" id="img" file="true" class="form-control-file" id="exampleFormControlFile1">
-                            </div>
                         </div>
                         <div class="col-sm-6 col-md-6">
                             <div class="form-group form-floating-label">
@@ -251,9 +220,6 @@
                     </div>
                 </form>
 			</div>
-			{{-- <div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-			</div> --}}
 		</div>
 	</div>
 </div>

@@ -33,39 +33,28 @@ class CustomerController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $customer = DB::table('customers')->select('id', DB::raw('CONCAT(name," ", last_name) AS fullname'), 'document', 'email', 'phone', 'city', 'province', 'address', 'gender', DB::raw('IF(status=1,"Activo","Inactivo") AS status'))->get();
+            $customer = DB::table('tb_clientes')->select('idcliente', DB::raw('CONCAT(nombres," ", apellidos) AS fullname'), 'documento', 'email', 'telefono', 'tipo cliente AS tipo_cliente')->get();
             return Datatables::of($customer)
                     ->addIndexColumn()
                     ->addColumn('action', function($customer){
                            $btn = '';
-                        $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" data-placement="right" title="Editar"  data-id="'.$customer->id.'" id="edit_'.$customer->id.'" class="btn btn-primary btn-xs mr-1 editCustomer">
+                        $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" data-placement="right" title="Editar"  data-id="'.$customer->idcliente.'" id="edit_'.$customer->idcliente.'" class="btn btn-primary btn-xs mr-1 editCustomer">
                                         <i class="fas fa-pencil-alt"></i>
                                 </a>';
-                        $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" data-placement="right" title="Detalles"  data-id="'.$customer->id.'" id="det_'.$customer->id.'" class="btn btn-info btn-xs  mr-1 detalleCustomer">
+                        $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" data-placement="right" title="Detalles"  data-id="'.$customer->idcliente.'" id="det_'.$customer->idcliente.'" class="btn btn-info btn-xs  mr-1 detalleCustomer">
                                     <i class="fas fa-search"></i>
                                 </a>';
-                        $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" data-placement="right" title="Eliminar"  data-id="'.$customer->id.'" id="del_'.$customer->id.'" class="btn btn-danger btn-xs deleteCustomer">
+                        $btn .= '<a href="javascript:void(0)" data-toggle="tooltip" data-placement="right" title="Eliminar"  data-id="'.$customer->idcliente.'" id="del_'.$customer->idcliente.'" class="btn btn-danger btn-xs deleteCustomer">
                                         <i class="fas fa-trash-alt"></i>
                                 </a>';
                         return $btn;
                     })
-                    ->addColumn('status', function($customer){
-                        $btn = '';
-                        if($customer->status=='Activo'){
-                            $btn .= '<span class="badge badge-success">'.$customer->status.'</span>';
-                        }else{
-                            $btn .= '<span class="badge badge-danger">'.$customer->status.'</span>';
-                        }
-                        return $btn;
-                    })
-                    ->rawColumns(['action', 'status'])
+
+                    ->rawColumns(['action'])
                     ->make(true);
         }
 
-        $customers           = Customer::count();
-        $customers_inactive  = Customer::where('status', 0)->count();
-        $customers_active    = Customer::where('status', 1)->count();
-        return view('panel.admin.customers.index', ['title' => 'Clientes', 'customers' => $customers, 'customers_inactive' => $customers_inactive, 'customers_active' => $customers_active]);
+        return view('panel.admin.customers.index', ['title' => 'Clientes']);
     }
 
     /**
@@ -76,35 +65,22 @@ class CustomerController extends Controller
      */
     public function store(FormCustomerAddRequest $request)
     {
-        $customer               = new Customer();
-        $customer->name         = $request->name;
-        $customer->last_name    = $request->last_name;
-        $customer->document     = $request->document;
-        $customer->email        = $request->email;
-        $customer->phone        = $request->phone;
-        $customer->mobile       = $request->mobile;
-        $customer->city         = $request->city;
-        $customer->province     = $request->province;
-        $customer->address      = $request->address;
-        $customer->gender       = $request->gender;
-        $customer->number_measurer  = $request->number_measurer;
-        $customer->rate       = $request->rate;
-        $customer->half       = $request->half;
-        $customer->code       = $request->code;
-        $customer->observation  = $request->observation;
-        $customer->route_id     = $request->route;
-
-        if($request->file('img')){
-            $file           = $request->file('img');
-            $extension      = $file->getClientOriginalExtension();
-            $fileName       = time() . '.' . $extension;
-            $customer->img  = $fileName;
-            $file->move(public_path('img/customer/'), $fileName);
-        }else{
-            $customer->img = 'avatar.svg';
-        }
-        $saved = $customer->save();
-        if($saved)
+        $customer = DB::table('tb_clientes')->insert([
+            [   'documento'     => $request->document,
+                'nombres'       => $request->names,
+                'apellidos'     => $request->surnames,
+                'telefono'      => $request->phone,
+                'direccion'     => $request->address,
+                'email'         => $request->email,
+                'tipo cliente'  => $request->type,
+                'razon social'  => $request->social,
+                'giro'          => $request->turn,
+                'comuna'        => $request->commune,
+                'region'        => $request->region,
+                'ciudad'        => $request->city
+            ],
+        ]);
+        if($customer)
             return response()->json(['success' => true, 'message' => 'Cliente registrado exitosamente.'], 200);
     }
 
@@ -117,8 +93,8 @@ class CustomerController extends Controller
     public function show(Request $request, $id)
     {
         if(\Request::wantsJson()){
-            $customer = Customer::findOrFail($id);
-            return response()->json(['success' => true, 'customer' => $customer, 'route' => $customer->route], 200);
+            $customer = DB::table('tb_clientes')->select('idcliente', DB::raw('CONCAT(nombres," ", apellidos) AS fullnames'), 'nombres', 'apellidos', 'documento', 'email', 'telefono', 'tipo cliente AS tipo_cliente', 'razon social AS razon_social', 'giro', 'region', 'comuna', 'ciudad', 'direccion')->where('tb_clientes.idcliente', $id)->get();
+            return response()->json(['success' => true, 'customer' => $customer], 200);
        }
         abort(404);
     }
@@ -130,43 +106,26 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(FormCustomerEditRequest $request, Customer $Customer)
+    public function update(FormCustomerEditRequest $request)
     {
-        $customer = Customer::findOrFail($Customer->id);
-        $customer->name         = $request->name;
-        $customer->last_name    = $request->last_name;
-        $customer->document     = $request->document;
-        $customer->email        = $request->email;
-        $customer->phone        = $request->phone;
-        $customer->mobile       = $request->mobile;
-        $customer->city         = $request->city;
-        $customer->province     = $request->province;
-        $customer->address      = $request->address;
-        $customer->gender       = $request->gender;
-        $customer->number_measurer  = $request->number_measurer;
-        $customer->rate       = $request->rate;
-        $customer->half       = $request->half;
-        $customer->code       = $request->code;
-        $customer->observation  = $request->observation;
-        $customer->status     = ($request->status=="true") ? 1 : 0;
-        $customer->route_id   = $request->route;
 
-        if($request->file('img')){
-            if ($customer->img != "avatar.svg") {
-                if (File::exists(public_path('img/customer/' . $customer->img))) {
-                    File::delete(public_path('img/customer/' . $customer->img));
-                }
-            }
+        $customer = DB::table('tb_clientes')->where('idcliente', $request->idcliente)->update(
+            [   'documento'     => $request->document_e,
+                'nombres'       => $request->names_e,
+                'apellidos'     => $request->surnames_e,
+                'telefono'      => $request->phone_e,
+                'direccion'     => $request->address_e,
+                'email'         => $request->email_e,
+                'tipo cliente'  => $request->type_e,
+                'razon social'  => $request->social_e,
+                'giro'          => $request->turn_e,
+                'comuna'        => $request->commune_e,
+                'region'        => $request->region_e,
+                'ciudad'        => $request->city_e
+            ],
+        );
 
-            $file          = $request->file('img');
-            $extension     = $file->getClientOriginalExtension();
-            $fileName      = time() . '.' . $extension;
-            $customer->img = $fileName;
-            $file->move(public_path('img/customer/'), $fileName);
-        }
-
-        $saved = $customer->save();
-        if($saved)
+        if($customer)
             return response()->json(['success' => true, 'message' => 'Cliente actualizado exitosamente.'], 200);
     }
 
@@ -179,13 +138,8 @@ class CustomerController extends Controller
     public function destroy($id)
     {
         if(\Request::wantsJson()){
-            $customer = Customer::findOrFail($id);
-            if ($customer->img != "avatar.svg") {
-                if (File::exists(public_path('img/customer/' . $customer->img))) {
-                    File::delete(public_path('img/customer/' . $customer->img));
-                }
-            }
-            $delete = $customer->delete();
+
+            $delete = DB::table('tb_clientes')->where('tb_clientes.idcliente', $id)->delete();
             if ($delete) {
                 return response()->json(['success' => true, 'message' => 'Cliente eliminado exitosamente.'], 200);
             } else {
