@@ -215,7 +215,7 @@
             $('#edit_'+id).addClass('btn-white is-loading is-loading-md').prop("disabled", true);
             $('#btn-customer-edit').removeClass('btn-white is-loading is-loading-md').prop("disabled", false);
 
-            axios.get('{{ url(\Request::segment(1)) }}/'+id, {
+            axios.get('{{ url("clientes") }}/'+id, {
             }).then(response => {
                 console.log(response.data);
                 if(response.data.success){
@@ -293,7 +293,7 @@
 
             $('#btn-customer-edit').addClass('btn-white is-loading is-loading-md').prop("disabled", true);
             var id = $("#id_customer").val();
-            axios.post('{{ url(\Request::segment(1)) }}/'+id, $(this).serialize(), {
+            axios.post('{{ url("clientes") }}/'+id, $(this).serialize(), {
             }).then(response => {
                 if(response.data.success){
                         $.notify({
@@ -377,7 +377,7 @@
         $('body').on('click', '.detalleCustomer', function () {
             var id = $(this).data("id");
             $('#det_'+id).addClass('btn-white is-loading is-loading-md').prop("disabled", true);
-            axios.get('{{ url(\Request::segment(1)) }}/'+id, {
+            axios.get('{{ url("clientes") }}/'+id, {
                 }).then(response => {
                     if(response.data.success){
                         $("#modal-customer-show").modal("show");
@@ -477,7 +477,7 @@
                     }
                 }).then((confirm) => {
                     if (confirm) {
-                        axios.delete('{{ url(\Request::segment(1)) }}/'+id, {
+                        axios.delete('{{ url("clientes") }}/'+id, {
                                 }).then(response => {
                                     if(response.data.success){
                                         $.notify({
