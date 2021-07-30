@@ -10,7 +10,7 @@
 			</div>
 			<div class="modal-body">
                 <form method="POST" name="form-customer-edit" id="form-customer-edit">
-                    @method('PUT')
+                    {{-- @method('PUT') --}}
                     <input type="hidden" name="idcliente" id="id_customer">
                     <div class="row">
                         <div class="col-sm-12 col-md-12">

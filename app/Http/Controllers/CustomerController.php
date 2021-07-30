@@ -135,11 +135,11 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete(Request $request)
     {
         if(\Request::wantsJson()){
 
-            $delete = DB::table('tb_clientes')->where('tb_clientes.idcliente', $id)->delete();
+            $delete = DB::table('tb_clientes')->where('tb_clientes.idcliente', $request->id)->delete();
             if ($delete) {
                 return response()->json(['success' => true, 'message' => 'Cliente eliminado exitosamente.'], 200);
             } else {

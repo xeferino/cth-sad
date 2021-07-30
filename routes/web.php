@@ -27,6 +27,8 @@ Route::get('/dashboard', 'HomeController@index')->name('home');
 Route::resource('/users', 'UserController');
 Route::put('/users/profile/{user}', 'UserController@profile');
 Route::resource('clientes', 'CustomerController')->only('index');
-Route::post('getClientes', 'CustomerController@show')->name('clientes.show');
-Route::post('clientes', 'CustomerController@store')->name('clientes.store');
+Route::post('clientes/show', 'CustomerController@show')->name('clientes.show');
+Route::post('clientes/delete', 'CustomerController@delete')->name('clientes.delete');
+Route::post('clientes/store', 'CustomerController@store')->name('clientes.store');
+Route::post('clientes/update', 'CustomerController@update')->name('clientes.update');
 

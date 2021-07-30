@@ -215,7 +215,8 @@
             $('#edit_'+id).addClass('btn-white is-loading is-loading-md').prop("disabled", true);
             $('#btn-customer-edit').removeClass('btn-white is-loading is-loading-md').prop("disabled", false);
 
-            axios.get('{{ url("clientes") }}/'+id, {
+            axios.post('{{ route('clientes.show') }}', {
+                id:id,
             }).then(response => {
                 console.log(response.data);
                 if(response.data.success){
@@ -293,7 +294,7 @@
 
             $('#btn-customer-edit').addClass('btn-white is-loading is-loading-md').prop("disabled", true);
             var id = $("#id_customer").val();
-            axios.post('{{ url("clientes") }}/'+id, $(this).serialize(), {
+            axios.post('{{ route('clientes.update') }}', $(this).serialize(), {
             }).then(response => {
                 if(response.data.success){
                         $.notify({
@@ -478,74 +479,75 @@
                     }
                 }).then((confirm) => {
                     if (confirm) {
-                        axios.delete('{{ url("clientes") }}/'+id, {
-                                }).then(response => {
-                                    if(response.data.success){
+                        axios.post('{{ route('clientes.delete') }}', {
+                            id:id,
+                        }).then(response => {
+                            if(response.data.success){
+                                $.notify({
+                                        icon: 'flaticon-success',
+                                        title: 'Exito!',
+                                        message: '<p style="font-size: 14px;">'+response.data.message+'</p>',
+                                    },
+                                    {
+                                        type: 'success',
+                                        placement: {
+                                            from: "top",
+                                            align: "right"
+                                    },
+                                        time: 1000,
+                                });
+                                table.ajax.reload();
+                            }
+                        }).catch(error => {
+                            if (error.response) {
+                                if(error.response.status === 403){
                                         $.notify({
-                                                icon: 'flaticon-success',
-                                                title: 'Exito!',
-                                                message: '<p style="font-size: 14px;">'+response.data.message+'</p>',
+                                            icon: 'flaticon-error',
+                                            title: 'Error!',
+                                            message: '<p style="font-size: 14px;">'+error.response.data.message+'</p>',
                                             },
                                             {
-                                                type: 'success',
+                                                type: 'danger',
                                                 placement: {
                                                     from: "top",
                                                     align: "right"
                                             },
-                                                time: 1000,
+                                                time: 3000,
+                                                z_index: 1500,
                                         });
-                                        table.ajax.reload();
-                                    }
-                                }).catch(error => {
-                                    if (error.response) {
-                                        if(error.response.status === 403){
-                                                $.notify({
-                                                    icon: 'flaticon-error',
-                                                    title: 'Error!',
-                                                    message: '<p style="font-size: 14px;">'+error.response.data.message+'</p>',
-                                                    },
-                                                    {
-                                                        type: 'danger',
-                                                        placement: {
-                                                            from: "top",
-                                                            align: "right"
-                                                    },
-                                                        time: 3000,
-                                                        z_index: 1500,
-                                                });
-                                        }else{
-                                            $.notify({
-                                                    icon: 'flaticon-error',
-                                                    title: 'Error!',
-                                                    message: '<p style="font-size: 14px;">Intente nuevamente mas tarde.</p>',
-                                                    },
-                                                    {
-                                                        type: 'danger',
-                                                        placement: {
-                                                            from: "top",
-                                                            align: "right"
-                                                    },
-                                                        time: 3000,
-                                                        z_index: 1500,
-                                            });
-                                        }
-                                    }else{
-                                        $.notify({
-                                                    icon: 'flaticon-error',
-                                                    title: 'Error!',
-                                                    message: '<p style="font-size: 14px;">Intente nuevamente mas tarde.</p>',
-                                                    },
-                                                    {
-                                                        type: 'danger',
-                                                        placement: {
-                                                            from: "top",
-                                                            align: "right"
-                                                    },
-                                                        time: 3000,
-                                                        z_index: 1500,
-                                            });
-                                    }
-                                });
+                                }else{
+                                    $.notify({
+                                            icon: 'flaticon-error',
+                                            title: 'Error!',
+                                            message: '<p style="font-size: 14px;">Intente nuevamente mas tarde.</p>',
+                                            },
+                                            {
+                                                type: 'danger',
+                                                placement: {
+                                                    from: "top",
+                                                    align: "right"
+                                            },
+                                                time: 3000,
+                                                z_index: 1500,
+                                    });
+                                }
+                            }else{
+                                $.notify({
+                                            icon: 'flaticon-error',
+                                            title: 'Error!',
+                                            message: '<p style="font-size: 14px;">Intente nuevamente mas tarde.</p>',
+                                            },
+                                            {
+                                                type: 'danger',
+                                                placement: {
+                                                    from: "top",
+                                                    align: "right"
+                                            },
+                                                time: 3000,
+                                                z_index: 1500,
+                                    });
+                            }
+                        });
                     } else {
                         swal.close();
                     }
