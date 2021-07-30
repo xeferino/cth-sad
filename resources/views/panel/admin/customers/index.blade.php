@@ -377,7 +377,8 @@
         $('body').on('click', '.detalleCustomer', function () {
             var id = $(this).data("id");
             $('#det_'+id).addClass('btn-white is-loading is-loading-md').prop("disabled", true);
-            axios.get('{{ url("clientes") }}/'+id, {
+            axios.post('{{ route('clientes.show') }}', {
+                id:id,
                 }).then(response => {
                     if(response.data.success){
                         $("#modal-customer-show").modal("show");

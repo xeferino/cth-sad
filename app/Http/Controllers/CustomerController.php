@@ -90,10 +90,10 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $id)
+    public function show(Request $request)
     {
         if(\Request::wantsJson()){
-            $customer = DB::table('tb_clientes')->select('idcliente', DB::raw('CONCAT(nombres," ", apellidos) AS fullnames'), 'nombres', 'apellidos', 'documento', 'email', 'telefono', 'tipo cliente AS tipo_cliente', 'razon social AS razon_social', 'giro', 'region', 'comuna', 'ciudad', 'direccion')->where('tb_clientes.idcliente', $id)->get();
+            $customer = DB::table('tb_clientes')->select('idcliente', DB::raw('CONCAT(nombres," ", apellidos) AS fullnames'), 'nombres', 'apellidos', 'documento', 'email', 'telefono', 'tipo cliente AS tipo_cliente', 'razon social AS razon_social', 'giro', 'region', 'comuna', 'ciudad', 'direccion')->where('tb_clientes.idcliente', $request->id)->get();
             return response()->json(['success' => true, 'customer' => $customer], 200);
        }
         abort(404);
