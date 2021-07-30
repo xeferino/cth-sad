@@ -150,7 +150,7 @@
                 $.notify({
                         icon: 'flaticon-error',
                         title: 'Error!',
-                        message: '<p style="font-size: 14px;">El email y la clave son obligatorios.</p>',
+                        message: '<p style="font-size: 14px;">El usuario y la clave son obligatorios.</p>',
                     },
                     {
                         type: 'danger',
